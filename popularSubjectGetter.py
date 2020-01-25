@@ -7,5 +7,8 @@ def popularSubjectGetter():
     db = cluster['Tutorfy']
     collection = db['Tutorfy']
     math = (collection.find({"subject": "Math"}))
+    count = 0
+    for i in math:
+        count+=1
     print(math)
-    return math
+    return str(count)
