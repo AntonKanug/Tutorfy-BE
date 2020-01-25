@@ -29,6 +29,12 @@ def products():
     # return jsonify(content)
     return ""
 
+@app.route('/addTutor', methods = ['POST'])
+def addTutor():
+    tutor = request.get_json()
+    return tutor
+    
+
 @app.route('/addProduct', methods = ['POST'])
 def addProduct():
     # productData = request.get_json()
@@ -36,16 +42,16 @@ def addProduct():
     return ""
 
 
-@app.route('/rmProduct', methods = ['POST'])
-def rmProduct():
-    # productData = request.get_json()
-    # return removeProduct(int(productData['id']), productData['email'])
-    return ""
+# @app.route('/rmProduct', methods = ['POST'])
+# def rmProduct():
+#     # productData = request.get_json()
+#     # return removeProduct(int(productData['id']), productData['email'])
+#     return ""
 
-@app.route('/priceCheck')
-def priceCheck():
-    # return priceChecker()
-    return ""
+# @app.route('/priceCheck')
+# def priceCheck():
+#     # return priceChecker()
+#     return ""
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
