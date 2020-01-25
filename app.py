@@ -12,6 +12,7 @@ from pymongo import MongoClient
 # from newProduct import newProduct
 # from sendEMail import sendEMail
 # from removeProduct import removeProduct
+from popularSubjectGetter import popularSubjectGetter
 
 app = Flask(__name__)
 CORS(app)
@@ -20,26 +21,50 @@ CORS(app)
 def index():
     return "<h3>Welcome to backend of Price Watch</h3><h4>By Anton Kanugalawattage</h4>"
 
-@app.route('/products')
-def products():
-    # cluster = MongoClient("")
-    # db = cluster['PriceWatch']
-    # collection = db['PriceWatch-Products']
-    # content = list(collection.find())
-    # return jsonify(content)
-    return ""
+# @app.route('/products')
+# def products():
+#     # cluster = MongoClient("")
+#     # db = cluster['PriceWatch']
+#     # collection = db['PriceWatch-Products']
+#     # content = list(collection.find())
+#     # return jsonify(content)
+#     return ""
+
+@app.route('/getTutor')
+def getTutor():
+    cluster = MongoClient("mongodb+srv://tUser:sUqOIWMnEz5a8sqn@tutorfy-ednqp.mongodb.net/test?retryWrites=true&w=majority")
+    db = cluster['Tutorfy']
+    collection = db['Tutorfy']
+    content = list(collection.find())
+    return jsonify(content)
 
 @app.route('/addTutor', methods = ['POST'])
 def addTutor():
     tutor = request.get_json()
-    return tutor
+    cluster = MongoClient("mongodb+srv://tUser:sUqOIWMnEz5a8sqn@tutorfy-ednqp.mongodb.net/test?retryWrites=true&w=majority")
+    db = cluster['Tutorfy']
+    collection = db['Tutorfy']
+    collection.insert_one(tutor)
+    return "tutor_added"
+
+#updatE rating
+
+
+#popular subjects
+@app.route('/getPopularSubjects')
+def getPopularSubjects():
+    return popularSubjectGetter()
     
 
-@app.route('/addProduct', methods = ['POST'])
-def addProduct():
-    # productData = request.get_json()
-    # return newProduct(productData['title'], productData['email'])
-    return ""
+#popular courses
+
+#new courses
+
+# @app.route('/addProduct', methods = ['POST'])
+# def addProduct():
+#     # productData = request.get_json()
+#     # return newProduct(productData['title'], productData['email'])
+#     return ""
 
 
 # @app.route('/rmProduct', methods = ['POST'])
