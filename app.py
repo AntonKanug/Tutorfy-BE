@@ -55,11 +55,11 @@ def addTutor():
         "description": tutor["description"],
         "image": tutor["image"],
         "university": tutor["university"],
-        "rating": int(tutor["rating"]),
+        "rating": float(tutor["rating"]),
         "numberOfRatings": int(tutor["numberOfRatings"]),
         "email": tutor["email"],
         "phone": tutor["phone"],
-        "price": int(tutor["price"])
+        "price": float(tutor["price"])
 	        }
     collection.insert_one(jsonfile)
     return "tutor_added"
