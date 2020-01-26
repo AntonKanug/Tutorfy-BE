@@ -11,6 +11,7 @@ from pymongo import MongoClient
 from popularSubjectGetter import popularSubjectGetter
 from popularCoursesGetter import popularCoursesGetter
 from newRating import newRating
+from sendEMail import sendEMail
 from latestSubjectGetter import latestSubjectGetter
 
 app = Flask(__name__)
