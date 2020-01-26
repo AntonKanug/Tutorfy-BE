@@ -20,7 +20,7 @@ def popularSubjectGetter():
                 "Art"] 
                 
     assetsList = [ "assets/math.png", "assets/biology.png", "assets/chemistry.png", "assets/physics.jpg", 
-                   "assets/business.png", "assets/engineering.png", "assets/compsci.jpg", "assets/art.jpg" ]
+                   "assets/business.png", "assets/engineering.png", "assets/compsci.png", "assets/art.jpg" ]
 
 
     for i in subjectList:
