@@ -10,6 +10,7 @@ import pymongo
 from pymongo import MongoClient
 from popularSubjectGetter import popularSubjectGetter
 from newRating import newRating
+from latestSubjectGetter import latestSubjectGetter
 app = Flask(__name__)
 CORS(app)
 
@@ -53,7 +54,11 @@ def updateRating():
 @app.route('/getPopularSubjects')
 def getPopularSubjects():
     return popularSubjectGetter()
-    
+
+@app.route('/getLatestSubjects')
+def getLatestSubjects():
+    return latestSubjectGetter()
+        
 
 #popular courses
 
