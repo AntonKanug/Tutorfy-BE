@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email import encoders 
 
-def sendEMail(email, title):
+def sendEMail(tutEmail, message,usrEmail):
      ##Initializing  Server
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
@@ -21,11 +21,11 @@ def sendEMail(email, title):
     ##Creating Message
     msg = MIMEMultipart() 
     msg['From'] = 'Tutorfy'
-    msg['Subject'] = 'New request for a student for' + title
+    msg['Subject'] = 'New request from a student!'
 
 
     html = """\
-                <!DOCTYPE html><h3>New Request Email!</h3>"""
+                <!DOCTYPE html><h3>New Request from a student, """+usrEmail+ """!</h3> <h4>"""+message+ """</h4>"""
 
     text = MIMEText(html, 'html')
     msg.attach(text)
@@ -33,8 +33,8 @@ def sendEMail(email, title):
 
     server.sendmail(
                     'noreplyPriceWatch@gmail.com',
-                    email,
+                    tutEmail,
                     msg.as_string()
                 )
-    print("Email Sent to: %s" % email)
+    print("Email Sent to: %s" % tutEmail)
     server.quit

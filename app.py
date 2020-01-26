@@ -88,7 +88,7 @@ def getLatestSubjects():
 @app.route('/contactTutor', methods = ['POST'])
 def contactTutor():
     data = request.get_json()
-    return sendEMail(data['email'], data['title'])
+    return sendEMail(data['tutorEmail'], data['message'], data['email'])
 
 
 #popular courses
