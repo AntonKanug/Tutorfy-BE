@@ -9,8 +9,10 @@ from flask_cors import CORS, cross_origin
 import pymongo
 from pymongo import MongoClient
 from popularSubjectGetter import popularSubjectGetter
+from popularCoursesGetter import popularCoursesGetter
 from newRating import newRating
 from latestSubjectGetter import latestSubjectGetter
+
 app = Flask(__name__)
 CORS(app)
 
@@ -55,14 +57,19 @@ def updateRating():
 def getPopularSubjects():
     return popularSubjectGetter()
 
+#popular subjects
+@app.route('/getPopularCourses')
+def getPopularCourses():
+    return popularCoursesGetter()
+
 @app.route('/getLatestSubjects')
 def getLatestSubjects():
     return latestSubjectGetter()
-        
 
 #popular courses
 
 #new courses
+
 
 # @app.route('/addProduct', methods = ['POST'])
 # def addProduct():
