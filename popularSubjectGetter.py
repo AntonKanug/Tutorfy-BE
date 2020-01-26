@@ -8,6 +8,7 @@ def popularSubjectGetter():
     cluster = MongoClient("mongodb+srv://tUser:sUqOIWMnEz5a8sqn@tutorfy-ednqp.mongodb.net/test?retryWrites=true&w=majority")
     db = cluster['Tutorfy']
     collection = db['Tutorfy']
+
     subCount = []
     subjectList = [ "Math", 
                 "Biology",
@@ -18,6 +19,10 @@ def popularSubjectGetter():
                 "Computer Science",
                 "Art"] 
                 
+    assetsList = [ "assets/math.png", "assets/biology.png", "assets/chemistry.png", "assets/physics.jpg", 
+                   "assets/business.png", "assets/engineering.png", "assets/compsci.jpg", "assets/art.jpg" ]
+
+
     for i in subjectList:
         subject = collection.find({"subject": i})
         count = 0
@@ -29,8 +34,16 @@ def popularSubjectGetter():
     sortSubs = sorted(subCount, key=lambda tup: tup[1])
     sortSubs.reverse()
 
+
+    # reslist = []
+    # for i in sortSubs:
+    #     reslist.append({"course" : i[0], "count" : i[1]})
+
     reslist = []
-    for i in sortSubs:
-        reslist.append({"course" : i[0], "count" : i[1]})
+    for i in range(6): 
+        course = sortSubs[i][0] 
+        ind = subjectList.index(course)
+        asset = assetsList[ind]
+        reslist.append({"subject":course, "asset":asset})
 
     return jsonify(reslist)
