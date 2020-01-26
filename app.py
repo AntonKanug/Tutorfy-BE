@@ -50,15 +50,16 @@ def addTutor():
         "name": tutor['name'],
         "courseName": tutor["courseName"],
         "subject": tutor["subject"],
+        "courseCode": tutor["courseCode"],
         "credentials": tutor["credentials"],
         "description": tutor["description"],
         "image": tutor["image"],
         "university": tutor["university"],
-        "rating": tutor["rating"],
-        "numberOfRatings": tutor["numberOfRatings"],
+        "rating": int(tutor["rating"]),
+        "numberOfRatings": int(tutor["numberOfRatings"]),
         "email": tutor["email"],
         "phone": tutor["phone"],
-        "price": tutor["price"]
+        "price": int(tutor["price"])
 	        }
     collection.insert_one(jsonfile)
     return "tutor_added"
