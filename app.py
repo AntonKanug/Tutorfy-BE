@@ -66,6 +66,13 @@ def getPopularCourses():
 def getLatestSubjects():
     return latestSubjectGetter()
 
+
+@app.route('/contactTutor', methods = ['POST'])
+def contactTutor():
+    data = request.get_json()
+    return sendEMail(data['email'], data['title'])
+
+
 #popular courses
 
 #new courses
