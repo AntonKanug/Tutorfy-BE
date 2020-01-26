@@ -12,7 +12,7 @@ from popularSubjectGetter import popularSubjectGetter
 from popularCoursesGetter import popularCoursesGetter
 from newRating import newRating
 from sendEMail import sendEMail
-from latestSubjectGetter import latestSubjectGetter
+from latestSubjectGetter import latestSubjectGetter 
 
 app = Flask(__name__)
 CORS(app)
@@ -44,14 +44,30 @@ def addTutor():
     cluster = MongoClient("mongodb+srv://tUser:sUqOIWMnEz5a8sqn@tutorfy-ednqp.mongodb.net/test?retryWrites=true&w=majority")
     db = cluster['Tutorfy']
     collection = db['Tutorfy']
-    collection.insert_one(tutor)
+    print(tutor['name'])
+    jsonfile = {
+        "_id": int(list(collection.find())[-1]['_id'])+1,
+        "name": tutor['name'],
+        "courseName": tutor["courseName"],
+        "subject": tutor["subject"],
+        "credentials": tutor["credentials"],
+        "description": tutor["description"],
+        "image": tutor["image"],
+        "university": tutor["university"],
+        "rating": tutor["rating"],
+        "numberOfRatings": tutor["numberOfRatings"],
+        "email": tutor["email"],
+        "phone": tutor["phone"],
+        "price": tutor["price"]
+	        }
+    collection.insert_one(jsonfile)
     return "tutor_added"
 
 #update rating
 @app.route('/updateRating', methods = ['POST'])
 def updateRating():
     data = request.get_json()
-    return newRating(data['id'], data['rating'])
+    return newRating(data['_id'], data['rating'])
 
 #popular subjects
 @app.route('/getPopularSubjects')

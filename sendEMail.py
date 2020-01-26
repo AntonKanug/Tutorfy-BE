@@ -36,5 +36,5 @@ def sendEMail(email, title):
                     email,
                     msg.as_string()
                 )
-    print("📤  Email Sent to: %s" % email)
+    print("Email Sent to: %s" % email)
     server.quit

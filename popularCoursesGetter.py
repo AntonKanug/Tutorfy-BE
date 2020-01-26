@@ -15,7 +15,7 @@ def popularCoursesGetter():
         allCourses.append((course["_id"], course["rating"], course["numberOfRatings"]))
     
     allCourses = sorted(allCourses, key=lambda course: course[2]*course[1])
-    allCourses.reverse()
+    allCourses.reverse()    
     ids = []
     for i in range(6):
         ids.append(allCourses[i][0])
