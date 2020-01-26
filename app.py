@@ -8,13 +8,9 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 import pymongo
 from pymongo import MongoClient
-# from priceChecker import priceChecker
-# from newProduct import newProduct
-# from sendEMail import sendEMail
-# from removeProduct import removeProduct
 from popularSubjectGetter import popularSubjectGetter
+from newRating import newRating
 from latestSubjectGetter import latestSubjectGetter
-
 app = Flask(__name__)
 CORS(app)
 
@@ -48,8 +44,11 @@ def addTutor():
     collection.insert_one(tutor)
     return "tutor_added"
 
-#updatE rating
-
+#update rating
+@app.route('/updateRating', methods = ['POST'])
+def updateRating():
+    data = request.get_json()
+    return newRating(data['id'], data['rating'])
 
 #popular subjects
 @app.route('/getPopularSubjects')
