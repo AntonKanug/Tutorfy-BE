@@ -13,6 +13,7 @@ from pymongo import MongoClient
 # from sendEMail import sendEMail
 # from removeProduct import removeProduct
 from popularSubjectGetter import popularSubjectGetter
+from latestSubjectGetter import latestSubjectGetter
 
 app = Flask(__name__)
 CORS(app)
@@ -54,7 +55,11 @@ def addTutor():
 @app.route('/getPopularSubjects')
 def getPopularSubjects():
     return popularSubjectGetter()
-    
+
+@app.route('/getLatestSubjects')
+def getLatestSubjects():
+    return latestSubjectGetter()
+        
 
 #popular courses
 
